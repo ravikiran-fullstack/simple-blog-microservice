@@ -1,6 +1,11 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
+
+import { PostContext } from './App';
+
 const PostCreate = () => {
+  const { updatePosts } = useContext(PostContext);
+
   const [title, setTitle] = useState('');
 
   const submitPost = async (e) => {
@@ -11,6 +16,7 @@ const PostCreate = () => {
       });
       console.log(response);
       setTitle('');
+      updatePosts(Math.random() * 100000000);
     } catch (error) {
       console.log(error);
     }

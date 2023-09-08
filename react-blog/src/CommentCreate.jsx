@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import axios from 'axios';
+import { PostContext } from './App';
 
 // eslint-disable-next-line react/prop-types
 const CommentCreate = ({ postId }) => {
+  const { updatePosts } = useContext(PostContext);
   const [content, setContent] = useState('');
   const submitComment = async (event) => {
     event.preventDefault();
@@ -13,6 +15,7 @@ const CommentCreate = ({ postId }) => {
       );
       console.log(response.data);
       setContent('');
+      updatePosts(Math.random() * 1000000);
     } catch (error) {
       console.log(error);
     }

@@ -4,7 +4,14 @@ import { useState, useEffect } from 'react';
 import CommentList from './CommentList';
 import CommentCreate from './CommentCreate';
 
+import { PostContext } from './App';
+import { useContext } from 'react';
+
 const PostList = () => {
+  const { postsChanged } = useContext(PostContext);
+
+  console.log(postsChanged);
+
   const [allPosts, setAllPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
@@ -18,7 +25,7 @@ const PostList = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [postsChanged]);
   return (
     <>
       {allPosts && (

@@ -1,8 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { PostContext } from './App';
 
 // eslint-disable-next-line react/prop-types
 const CommentList = ({ postId }) => {
+  const { postsChanged } = useContext(PostContext);
+
   console.log(postId);
   const [comments, setComments] = useState([]);
   useEffect(() => {
@@ -19,7 +22,7 @@ const CommentList = ({ postId }) => {
     };
 
     fetchComments(postId);
-  }, []);
+  }, [postId, postsChanged]);
   return (
     comments.length !== 0 && (
       <div>
