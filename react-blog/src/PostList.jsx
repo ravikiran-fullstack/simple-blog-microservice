@@ -22,10 +22,10 @@ const PostList = () => {
   return (
     <>
       {allPosts && (
-        <div className="d-flex flex-row flex-wrap justify-content-between">
+        <div className="d-flex flex-row flex-wrap justify-content-even">
           {allPosts.map((post) => (
             <div
-              className="card"
+              className="card m-3"
               style={{ width: '18rem', marginBottom: '2rem' }}
               key={post.id}
             >

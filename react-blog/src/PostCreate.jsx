@@ -10,6 +10,7 @@ const PostCreate = () => {
         title,
       });
       console.log(response);
+      setTitle('');
     } catch (error) {
       console.log(error);
     }
