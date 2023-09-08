@@ -6,6 +6,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.post('/events', (req, res) => {
+  console.log(req.body);
   const event = req.body;
 
   axios.post('http://localhost:4000/events', event).catch((err) => {
@@ -16,6 +17,7 @@ app.post('/events', (req, res) => {
     console.log(err.message);
   });
 
+  // Query micro-service
   axios.post('http://localhost:6000/events', event).catch((err) => {
     console.log(err.message);
   });

@@ -26,7 +26,7 @@ const CommentList = ({ postId }) => {
         <h6>CommentList</h6>
         <ul>
           {comments.map((comment) => (
-            <li key={comment.id}>{comment.content}</li>
+            <li key={comment.commentId}>{comment.content}</li>
           ))}
         </ul>
       </div>
