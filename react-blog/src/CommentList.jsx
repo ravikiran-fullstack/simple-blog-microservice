@@ -10,7 +10,13 @@ const CommentList = ({ comments }) => {
         <ul>
           {/* eslint-disable-next-line react/prop-types */}
           {comments.map((comment) => (
-            <li key={comment.commentId}>{comment.content}</li>
+            <li key={comment.commentId}>
+              {comment.status === 'Approved'
+                ? comment.content
+                : comment.status === 'Pending'
+                ? 'Comment under moderation'
+                : 'Comment Rejected'}
+            </li>
           ))}
         </ul>
       </div>

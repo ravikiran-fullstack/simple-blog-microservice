@@ -5,24 +5,45 @@ const axios = require('axios');
 const app = express();
 app.use(bodyParser.json());
 
+const events = [];
+
 app.post('/events', (req, res) => {
   console.log(req.body);
-  const event = req.body;
+  const { typeOfEvent, data } = req.body;
+  events.push(req.body);
 
-  axios.post('http://localhost:4000/events', event).catch((err) => {
-    console.log(err.message);
-  });
+  axios
+    .post('http://localhost:4000/events', { typeOfEvent, data })
+    .catch((err) => {
+      console.log('4000', err.message);
+    });
 
-  axios.post('http://localhost:5000/events', event).catch((err) => {
-    console.log(err.message);
-  });
+  // Comment Moderation service
+  axios
+    .post('http://localhost:1111/events', { typeOfEvent, data })
+    .catch((err) => {
+      console.error('1111', err.message);
+    });
+
+  // Comments micro-service
+  axios
+    .post('http://localhost:5000/events', { typeOfEvent, data })
+    .catch((err) => {
+      console.log(err.message);
+    });
 
   // Query micro-service
-  axios.post('http://localhost:9999/events', event).catch((err) => {
-    console.log(err.message);
-  });
+  axios
+    .post('http://localhost:9999/events', { typeOfEvent, data })
+    .catch((err) => {
+      console.log(err.message);
+    });
 
   res.send({ status: 'OK' });
+});
+
+app.get('/events', (req, res) => {
+  res.json(events);
 });
 
 app.listen(7000, () => {
