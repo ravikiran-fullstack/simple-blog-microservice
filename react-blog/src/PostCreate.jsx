@@ -10,6 +10,9 @@ const PostCreate = () => {
 
   const submitPost = async (e) => {
     e.preventDefault();
+    if (!title || title == '') {
+      return;
+    }
     try {
       const response = await axios.post('http://localhost:4000/posts', {
         title,
