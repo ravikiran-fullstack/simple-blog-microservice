@@ -1,8 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const axios = require('axios');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 
 const posts = {};
@@ -32,6 +33,6 @@ app.post('/events', (req, res) => {
   res.status(200).json(posts);
 });
 
-app.listen(6000, () => {
-  console.log('listening on 6000');
+app.listen(9999, () => {
+  console.log('listening on 9999');
 });
