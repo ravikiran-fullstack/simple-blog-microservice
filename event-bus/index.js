@@ -18,7 +18,7 @@ app.post('/events', (req, res) => {
   });
 
   // Query micro-service
-  axios.post('http://localhost:6000/events', event).catch((err) => {
+  axios.post('http://localhost:9999/events', event).catch((err) => {
     console.log(err.message);
   });
 

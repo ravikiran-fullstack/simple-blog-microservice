@@ -16,10 +16,11 @@ const PostList = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/posts');
+        const response = await axios.get('http://localhost:9999/posts');
+        console.log('response', response);
         setAllPosts(Object.values(response.data));
       } catch (error) {
-        console.log(error);
+        console.log('error occurred', error);
         setAllPosts([]);
       }
     };
@@ -39,7 +40,7 @@ const PostList = () => {
               <div className="card-body">
                 <h3 className="card-title">{post.title}</h3>
                 <hr />
-                <CommentList postId={post.id} />
+                <CommentList comments={post.comments} />
                 <CommentCreate postId={post.id} />
               </div>
             </div>
